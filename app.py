@@ -72,7 +72,7 @@ for i in range(len(rows)-1):
     tbody = tables[0].find_all('tbody', recursive=False)
     rows = tbody[0].find_all('tr', recursive=False)
 
-    for j in range(2, len(rows)):
+    for j in range(2, len(rows)+1):
         APPROVE_XAPTH = '/html/body/div[1]/table[8]/tbody/tr[' + str(j) + ']/td[12]/table/tbody/tr/td[1]/input'
         try:
             driver.find_element_by_xpath(APPROVE_XAPTH).click()
