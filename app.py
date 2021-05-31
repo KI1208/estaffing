@@ -17,6 +17,8 @@ PASSWORD_XPATH = '/html/body/div/table/tbody/tr/td/form/table[2]/tbody/tr/td[1]/
 COMPANY_XPATH = '/html/body/div/table/tbody/tr/td/form/table[2]/tbody/tr/td[1]/table[1]/tbody/tr/td/table[1]/tbody/tr[2]/td[3]/input'
 LOGIN_XPATH = '/html/body/div/table/tbody/tr/td/form/table[2]/tbody/tr/td[1]/table[1]/tbody/tr/td/table[2]/tbody/tr[2]/td[2]/a/img'
 
+SLEEP_TIME = 5
+
 def page_is_loaded(driver):
     return driver.find_element_by_tag_name("body") != None
 
@@ -73,22 +75,22 @@ for i in range(len(rows)-1):
     rows = tbody[0].find_all('tr', recursive=False)
 
     for j in range(2, len(rows)+1):
-        APPROVE_XAPTH = '/html/body/div[1]/table[8]/tbody/tr[' + str(j) + ']/td[12]/table/tbody/tr/td[1]/input'
+        APPROVE_XAPTH = '/html/body/div[1]/table[8]/tbody/tr[' + str(j) + ']/td[13]/table/tbody/tr/td[1]/input'
         try:
             driver.find_element_by_xpath(APPROVE_XAPTH).click()
             # 承認するとポップアップが発生
             alert_obj = driver.switch_to.alert
-            time.sleep(1)
+            time.sleep(SLEEP_TIME)
             alert_obj.accept()
-            time.sleep(1)
+            time.sleep(SLEEP_TIME)
         except:
             print('Line ' + str(j) + ' failed.')
 
     APPROVE_CLOSE_XPATH = '/html/body/div[1]/form[2]/table[1]/tbody/tr[2]/td[9]/table/tbody/tr/td[1]/input'
     driver.find_element_by_xpath(APPROVE_CLOSE_XPATH).click()
-    time.sleep(1)
+    time.sleep(SLEEP_TIME)
     alert_obj.accept()
-    time.sleep(1)
+    time.sleep(SLEEP_TIME)
 
     RETURN_XPATH = '/html/body/div[1]/form[5]/table/tbody/tr/th/input'
     driver.find_element_by_xpath(RETURN_XPATH).click()
